@@ -25,6 +25,14 @@ class Instructor extends Person {
   grade(student, subject) {
     console.log(`${student.name} receives a perfect score on ${subject}.`);
   }
+  gradeAdjust(student) {
+    let adjustment = Math.floor(Math.random() * Math.floor(10)) + 1; // Generates a grade adjustment between 1 and 10
+    adjustment *= Math.floor(Math.random() * 2) === 1 ? 1 : -1; // Randomly determines whether the grade adjustment will be positive or negative
+    student.grade += adjustment; // Applies the grade adjustment
+    if (student.grade < 1) {
+      student.grade = 1; // Stops the student's grade from going lower than 1
+    }
+  }
 }
 
 class Student extends Person {
@@ -33,6 +41,7 @@ class Student extends Person {
     this.previousBackground = atts.previousBackground;
     this.className = atts.className;
     this.favSubjects = atts.favSubjects;
+    this.grade = Math.floor(Math.random() * Math.floor(100)) + 1; // Gives each student starting grade from 1 to 100
   }
   listsSubjects() {
     this.favSubjects.forEach(element => {
@@ -137,3 +146,7 @@ console.log("\n");
 console.log(projectManager0144.catchPhrase);
 projectManager0144.standup(`Web17_${projectManager0144.name}`);
 projectManager0132.debugsCode(student1483, "Preprocessing I");
+
+console.log(student1002.grade);
+projectManager0132.gradeAdjust(student1002);
+console.log(student1002.grade);
