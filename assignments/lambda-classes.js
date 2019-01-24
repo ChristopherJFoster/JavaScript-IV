@@ -30,7 +30,10 @@ class Instructor extends Person {
     adjustment *= Math.floor(Math.random() * 2) === 1 ? 1 : -1; // Randomly determines whether the grade adjustment will be positive or negative
     student.grade += adjustment; // Applies the grade adjustment
     if (student.grade < 1) {
-      student.grade = 1; // Stops the student's grade from going lower than 1
+      student.grade = 1; // Stops the student's grade from being lower than 1
+    }
+    if (student.grade > 100) {
+      student.grade = 100; // Stops the student's grade from being higher than 100
     }
   }
 }
@@ -53,6 +56,28 @@ class Student extends Person {
   }
   sprintChallenge(subject) {
     console.log(`${this.name} has begun sprint challenge on ${subject}.`);
+  }
+  graduate() {
+    // Generates a different message based on how close the student is to qualifying for graduation
+    if (this.grade > 70) {
+      console.log(
+        `Congratulations, ${
+          this.name
+        }! You're ready to graduate from Lambda School.`
+      );
+    } else if (this.grade > 50) {
+      console.log(
+        `You're not quite ready to graduate, ${
+          this.name
+        }. Keep up the hard work!`
+      );
+    } else {
+      console.log(
+        `You've got some work ahead of you before you can graduate, ${
+          this.name
+        }. Coding can be difficult, but Lambda School is behind you all the way!`
+      );
+    }
   }
 }
 
@@ -146,7 +171,10 @@ console.log("\n");
 console.log(projectManager0144.catchPhrase);
 projectManager0144.standup(`Web17_${projectManager0144.name}`);
 projectManager0132.debugsCode(student1483, "Preprocessing I");
-
+console.log("\n");
 console.log(student1002.grade);
 projectManager0132.gradeAdjust(student1002);
 console.log(student1002.grade);
+console.log("\n");
+console.log(student1483.grade);
+student1483.graduate();
