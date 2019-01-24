@@ -50,8 +50,8 @@ class Student extends Person {
 class ProjectManager extends Instructor {
   constructor(atts) {
     super(atts);
-    gradClassName = atts.gradClassName;
-    favInstructor = atts.favInstructor;
+    this.gradClassName = atts.gradClassName;
+    this.favInstructor = atts.favInstructor;
   }
   standup(channel) {
     console.log(`${this.name} announces to ${channel}: @channel standy times!`);
@@ -60,3 +60,80 @@ class ProjectManager extends Instructor {
     console.log(`${this.name} debugs ${student.name}'s code on ${subject}.`);
   }
 }
+
+const instructor0023 = new Instructor({
+  name: "Sargento",
+  age: 29,
+  location: "Salt Lake City",
+  gender: "M",
+  specialty: "front end",
+  favLanguage: "CSS",
+  catchPhrase: "Did I do that?"
+});
+
+const instructor0049 = new Instructor({
+  name: "Claudia",
+  age: 28,
+  location: "The Misty Mountain",
+  gender: "F",
+  specialty: "back end",
+  favLanguage: "JavaScript",
+  catchPhrase: "You shall pass!"
+});
+
+const student1002 = new Student({
+  name: "Callie",
+  age: 35,
+  location: "Delaware",
+  gender: "F",
+  previousBackground: ["psychologist"],
+  className: "Web17",
+  favSubjects: ["NaNs", "template literals", ".push()"],
+  catchPhrase: "oKAY?" // Even though this argument object has a catchPhrase property...*
+});
+
+const student1483 = new Student({
+  name: "Daniel",
+  age: 32,
+  location: "Delaware",
+  gender: "M",
+  previousBackground: ["data analyst", "soccer player"],
+  className: "Web17",
+  favSubjects: ["git", "box model", "flexbox"]
+});
+
+const projectManager0132 = new ProjectManager({
+  name: "Jones",
+  age: 31,
+  location: "Tel Aviv",
+  gender: "M",
+  specialty: "back end",
+  favLanguage: "Ruby",
+  catchPhrase: "I'm gettin' too old for this!",
+  gradClassName: "Web12",
+  favInstructor: "Claudia"
+});
+
+const projectManager0144 = new ProjectManager({
+  name: "Tams",
+  age: 23,
+  location: "San Juan",
+  gender: "F",
+  specialty: "UX",
+  favLanguage: "Perl",
+  catchPhrase: "You ain't seen nothin', yet...",
+  gradClassName: "Web14",
+  favInstructor: "Big Pete"
+});
+
+console.log(instructor0023.catchPhrase);
+instructor0049.speak(); // Shows that the Instructor subclass inherits the methods of its parent class (Person)
+instructor0023.grade(student1483, "JavaScript Fundamentals");
+console.log("\n");
+console.log(student1002); // *...we can see that the generated Student object doesn't have a catchPhrase property...
+console.log(student1002.catchPhrase); // ...so trying to log catchPhrase from a Student object yields undefined.
+student1483.listsSubjects();
+console.log("\n");
+console.log(projectManager0144.catchPhrase);
+projectManager0144.standup(`Web17_${projectManager0144.name}`);
+projectManager0132.debugsCode(student1483, "Preprocessing I");
